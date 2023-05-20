@@ -45,6 +45,7 @@ class BrandTest extends TestCase
         /* Lesson02 タスク -初級編- 課題2 */
         // テスト実施
         $actual = $this->target->checkUnique($brand);
+
         // 検証処理
         $this->assertTrue($actual);
     }
@@ -74,7 +75,6 @@ class BrandTest extends TestCase
      */
     public function test_ブランド情報が存在しない場合例外が発生すること()
     {
-
         /* Lesson02 タスク -初級編- 課題3 */
         // 検証処理
         $this->expectException(NotFoundException::class);

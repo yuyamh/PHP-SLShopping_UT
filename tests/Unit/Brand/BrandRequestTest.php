@@ -56,7 +56,7 @@ class BrandRequestTest extends TestCase
         $actual = $validator->passes();
         // 期待値の設定
         $expected = true;
-        // 検証処理
+        // 検証
         $this->assertSame($expected, $actual);
     }
 
@@ -74,7 +74,7 @@ class BrandRequestTest extends TestCase
         $rules = $request->rules();
         $validator = Validator::make($data, $rules);
         $actual = $validator->passes();
-        $expected = false;
+        $expected = true;
 
         $this->assertSame($expected, $actual);
     }

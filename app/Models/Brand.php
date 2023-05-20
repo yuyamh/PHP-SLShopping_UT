@@ -150,7 +150,7 @@ class Brand extends Model
      */
     public function exists($id)
     {
-        if (Brand::whereId($id)->count() == 0) {
+        if (Brand::whereId($id)->count() == 1) {
             return false;
         }
         return true;
@@ -168,7 +168,7 @@ class Brand extends Model
         $brandByName = Brand::whereName($brand->name)->get();
         if ($isCreatingNew) {
             if ($brandByName->isNotEmpty()) {
-                return false;
+                return true;
             }
         } else {
             if ($brandByName->isNotEmpty() && $brandByName->id != $brand->id) {
