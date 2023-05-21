@@ -37,7 +37,16 @@ class CategoryTest extends TestCase
      */
     public function test_カテゴリー名が重複していない場合trueを返すこと()
     {
+        // カテゴリー名が重複していないカテゴリー情報を作成
+        $category = new Category([
+            'name' => 'あいうえお',
+        ]);
 
+        // テスト実施
+        $actual = $this->target->checkUnique($category);
+
+        // 検証処理
+        $this->assertTrue($actual);
     }
 
     /**
@@ -47,7 +56,15 @@ class CategoryTest extends TestCase
      */
     public function test_カテゴリー名が重複する場合falseを返すこと()
     {
+        // カテゴリー名が重複しているカテゴリー情報を作成
+        $category = new Category([
+            'name' => 'カテゴリーA',
+        ]);
 
+        // テスト実施
+        $actual = $this->target->checkUnique($category);
+        // 検証処理
+        $this->assertFalse($actual);
     }
 
     /**
@@ -57,7 +74,11 @@ class CategoryTest extends TestCase
      */
     public function test_カテゴリー情報が存在しない場合例外が発生すること()
     {
+        // 検証処理
+        $this->expectException(NotFoundException::class);
 
+        // テスト実施
+        $this->target->findById(0);
     }
 
     /**
@@ -67,6 +88,19 @@ class CategoryTest extends TestCase
      */
     public function test_カテゴリー情報の取得処理の検証()
     {
+        $category = new Category([
+            'name' => 'カテゴリーA',
+        ]);
 
+        $category->id = 1;
+        $category->created_at = '2022-07-01 10:00:00';
+        $category->updated_at = '2022-07-01 10:00:00';
+        $category->deleted_at = null;
+
+        $expected = $category->toArray();
+
+        $actual = $this->target->findById(1)->toArray();
+
+        $this->assertEquals($expected, $actual);
     }
 }
