@@ -30,7 +30,7 @@ class BrandRequest extends FormRequest
          * ブランド名: 必須|文字列|最大10文字
          */
         return [
-            'name' => 'required|string|max:11',
+            'name' => 'required|string|max:10',
         ];
     }
 

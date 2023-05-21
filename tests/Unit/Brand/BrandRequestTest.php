@@ -74,7 +74,7 @@ class BrandRequestTest extends TestCase
         $rules = $request->rules();
         $validator = Validator::make($data, $rules);
         $actual = $validator->passes();
-        $expected = true;
+        $expected = false;
 
         $this->assertSame($expected, $actual);
     }
